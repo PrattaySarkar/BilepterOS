@@ -2,6 +2,7 @@
 #include <common/types.h>
 #include <gdt.h>
 #include <hardwarecommunication/interrupts.h>
+#include <hardwarecommunication/pci.h>
 #include <drivers/driver.h>
 #include <drivers/keyboard.h>
 #include <drivers/mouse.h>
@@ -130,29 +131,42 @@ extern "C" void callConstructors()
 
 extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*multiboot_magic*/)
 {
-    printf("Hello World From BilepterOS v3.0!!!\n");
+    printf("Hello World From BilepterOS v3.0!\n\n");
 
     GlobalDescriptorTable gdt;
     InterruptManager interrupts(0x20, &gdt);
     
-    printf("Initializing Hardware, Stage 1\n");
-    
+    printf("\n[HRDMANAGER] InitHrd(stage1, true);\n");
+    printf("[HRDMANAGER] Successful; Next Stage...\n");
+
     DriverManager drvManager;
     
         PrintfKeyboardEventHandler kbhandler;
         KeyboardDriver keyboard(&interrupts, &kbhandler);
         drvManager.AddDriver(&keyboard);
     
-        MouseToConsole mousehandler;
-        MouseDriver mouse(&interrupts, &mousehandler);
-        drvManager.AddDriver(&mouse);
+        // MouseToConsole mousehandler;
+        // MouseDriver mouse(&interrupts, &mousehandler);
+        // drvManager.AddDriver(&mouse);
         
+        PeripheralComponentInterconnectController PCIController;
+        PCIController.SelectDrivers(&drvManager, &interrupts);
 
-    printf("Initializing Hardware, Stage 2\n");
+    printf("\n[HRDMANAGER] InitHrd(stage2, true);\n");
         drvManager.ActivateAll();
-        
-    printf("Initializing Hardware, Stage 3\n");
+    
+    printf("[HRDMANAGER] Successful; Next Stage...\n");
+
+    printf("\n[HRDMANAGER] InitHrd(stage3, true);\n");
     interrupts.Activate();
+    printf("\n");
+
+    printf("[HRDMANAGER] InitHrd Complete.\n");
+    printf("[MOUSEMANAGER] Trying to start Mouse Driver...\n");
+    printf("[MOUSEMANAGER] ERROR: Var mousemgm is 0, Not 1; Skipping Mouse Driver Init.\n");
+    printf("[KDBMANAGER] Trying to start Keyboard Driver...\n");
+    printf("[MOUSEMANAGER] kbdmgmt(1) started on Thread 1.\n\n");
+    printf("(BILEPTEROS3): ");
 
     while(1);
 }
