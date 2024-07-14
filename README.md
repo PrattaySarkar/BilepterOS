@@ -6,8 +6,8 @@ BilepterOS Is An Simple OS. This Repo Is For Updates Regarding This Project.
 ### Download QEMU:
 
 To Download QEMU, Click On The Following Links Based On Your System:
-   - For 64-Bit: https://qemu.weilnetz.de/w64/qemu-w64-setup-20230822.exe
-   - For 32-Bit: https://qemu.weilnetz.de/w32/qemu-w32-setup-20221230.exe
+   - For 64-Bit: https://qemu.weilnetz.de/w64/2024/qemu-w64-setup-20240423.exe
+   - For 32-Bit: https://qemu.weilnetz.de/w32/2022/qemu-w32-setup-20221230.exe
 
 ### Add QEMU To PATH
 
