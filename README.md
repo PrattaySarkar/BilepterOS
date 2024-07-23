@@ -9,6 +9,8 @@ To Download QEMU, Click On The Following Links Based On Your System:
    - For 64-Bit: https://qemu.weilnetz.de/w64/2024/qemu-w64-setup-20240423.exe
    - For 32-Bit: https://qemu.weilnetz.de/w32/2022/qemu-w32-setup-20221230.exe
 
+> NOTE: Those Who Are Coming From The BilepterOS Launcher Installer, You Don't Need TO Install QEMU From The Links. They are in the "Requirements" Folder in Your Installation folder.
+
 ### Add QEMU To PATH
 
 > Note: Only Do This Once!
